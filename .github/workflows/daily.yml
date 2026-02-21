@@ -1,0 +1,22 @@
+name: Auto Run
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # 每5分钟执行一次测试
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set timezone
+        run: sudo timedatectl set-timezone Asia/Shanghai
+
+      - name: Run Script
+        run: |
+          echo "开始执行"
+          java -version || true
